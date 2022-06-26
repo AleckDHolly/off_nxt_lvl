@@ -11,7 +11,7 @@ class TDListTile extends StatefulWidget {
 }
 
 class _TDListTileState extends State<TDListTile> {
-  var checked = false;
+  bool checked = false;
 
   late List<Icon> icons = [
     const Icon(
@@ -53,7 +53,7 @@ class LGListTile extends StatefulWidget {
 }
 
 class _LGListTileState extends State<LGListTile> {
-  var checked = false;
+  bool checked = false;
 
   late List<Icon> icons = [
     const Icon(
