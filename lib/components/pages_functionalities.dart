@@ -14,7 +14,7 @@ class Todo extends StatefulWidget {
 class _TodoState extends State<Todo> {
   @override
   Widget build(BuildContext context) {
-    final userTask = context.watch<AddATask>().task;
+    final userTask = context.watch<AddATask>();
 
     return Container(
       width: double.infinity,
@@ -25,14 +25,13 @@ class _TodoState extends State<Todo> {
           itemBuilder: ((context, index) {
             return Card(
               child: Slidable(
-                key: Key(userTask[index]),
+                key: UniqueKey(),
                 endActionPane: ActionPane(
                   dismissible: DismissiblePane(
                     onDismissed: () {
                       setState(() {
                         Provider.of<AddATask>(context, listen: false)
-                            .task
-                            .remove(userTask[index]);
+                            .deleteOneTask();
                       });
                     },
                   ),
@@ -43,8 +42,7 @@ class _TodoState extends State<Todo> {
                       onPressed: ((context) {
                         setState(() {
                           Provider.of<AddATask>(context, listen: false)
-                              .task
-                              .remove(userTask[index]);
+                              .deleteOneTask();
                         });
                       }),
                       icon: Icons.delete,
@@ -54,7 +52,7 @@ class _TodoState extends State<Todo> {
                   ],
                 ),
                 child: TDListTile(
-                  text: userTask[index],
+                  text: userTask.readOneTask(),
                 ),
               ),
             );
